@@ -11,7 +11,7 @@ In this PR, We have removed "@wdio/browserstack-service" and used "browserstack-
 2. Run `yarn install`
 3. Run `yarn wdio`
 
-#### Prerequisites:
+### Steps to reproduce the error:
 
 1. Make sure you have docker installed.
 
