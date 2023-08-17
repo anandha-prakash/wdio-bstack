@@ -2,8 +2,14 @@
 
 ### This branch is to provide a reproducible repo to browserstack to check the error when local is used using browserstack service.
 
+### Steps to run this locally:
 
-#### Prerequisites:
+1. clone the repo
+2. Run yarn install
+3. Run yarn wdio
+
+
+### Steps to reproduce the error:
 
 1. Make sure you have docker installed.
 
