@@ -8,8 +8,10 @@ In this PR, We have removed "@wdio/browserstack-service" and used "browserstack-
 ### Steps to run this locally:
 
 1. clone the repo
-2. Run `yarn install`
-3. Run `yarn wdio`
+2. Switch to browserstack-local branch
+3. Run git pull
+4. Run `yarn install`
+5. Run `yarn wdio`
 
 ### Steps to reproduce the error:
 
