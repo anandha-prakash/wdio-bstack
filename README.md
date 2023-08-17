@@ -5,8 +5,10 @@
 ### Steps to run this locally:
 
 1. clone the repo
-2. Run yarn install
-3. Run yarn wdio
+2. Switch to alpine-docker branch
+3. Run git pull
+4. Run yarn install
+5. Run yarn wdio
 
 
 ### Steps to reproduce the error:
