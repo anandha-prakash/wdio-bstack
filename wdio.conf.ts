@@ -1,11 +1,13 @@
 import type { Options } from '@wdio/types'
-
+import {Browserstack} from './browserstack.service.js';
 const bstackOptions = {
     'bstack:options': {
-        buildName: 'wdio-bstack'
+        os: 'OS X',
+        osVersion: 'Ventura',
+        buildName: 'wdio-bstack',
+        local: true
     }
 }
-
 export const config: Options.Testrunner = {
     runner: 'local',
     autoCompileOpts: {
@@ -24,36 +26,28 @@ export const config: Options.Testrunner = {
         // 'path/to/excluded/files'
     ],
     maxInstances: 5,
-    capabilities: [{
-        browserName: 'chrome', ...bstackOptions
-    }, {
-        browserName: 'firefox', ...bstackOptions
-    }, {
-        browserName: 'safari', ...bstackOptions
-    }, {
-        browserName: 'MicrosoftEdge', ...bstackOptions
-    }],
+    capabilities: [
+        { browserName: 'chrome', ...bstackOptions},
+        { browserName: 'firefox', ...bstackOptions},
+        { browserName: 'safari', ...bstackOptions},
+        { browserName: 'MicrosoftEdge', ...bstackOptions},
+        ],
     logLevel: 'error',
     bail: 0,
     baseUrl: 'http://localhost',
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    services: [
-        ['browserstack',
-        {
-            browserstackLocal: true,
-            browserstackOpts: {
-                key: process.env.BROWSERSTACK_ACCESS_KEY,
-                forceLocal: true,
-                localIdentifier: Math.random(),
-            },
-        }]
-    ],
     framework: 'mocha',
     reporters: ['spec'],
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
+    },
+    onPrepare() {
+        Browserstack.local.start();
+    },
+    async onComplete(){
+        await Browserstack.local.stop();
     },
 }

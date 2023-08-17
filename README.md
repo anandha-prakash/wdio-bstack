@@ -1,7 +1,15 @@
 # wdio-bstack
 
-### This branch is to provide a reproducible repo to browserstack to check the error when local is used using browserstack service.
+### this branch is give a reproducible example to browserstack.
 
+In this PR, We have removed "@wdio/browserstack-service" and used "browserstack-local" directly.
+
+
+### Steps to run this locally:
+
+1. clone the repo
+2. Run `yarn install`
+3. Run `yarn wdio`
 
 #### Prerequisites:
 
@@ -39,27 +47,29 @@ yarn run v1.22.19
 warning package.json: No license field
 $ wdio run ./wdio.conf.ts
 
-Execution of 4 workers started at 2023-08-17T18:59:20.062Z
+Execution of 4 workers started at 2023-08-17T19:21:43.069Z
 
-2023-08-17T18:59:20.802Z INFO @wdio/cli:launcher: Run onPrepare hook
-2023-08-17T18:59:20.804Z INFO @wdio/browserstack-service: app is not defined in browserstack-service config, skipping ...
-Error while trying to execute binary Error: Command failed: /root/.browserstack/BrowserStackLocal --daemon start --log-file /wdio/local.log --source nodejs-1.5.4 --key QHqzxidWEyF5KRkPSepT
-/root/.browserstack/BrowserStackLocal: --loader requires --experimental-modules be enabled
-
-    at ChildProcess.exithandler (node:child_process:402:12)
-    at ChildProcess.emit (node:events:513:28)
-    at ChildProcess.emit (node:domain:489:12)
-    at maybeClose (node:internal/child_process:1100:16)
-    at Process.ChildProcess._handle.onexit (node:internal/child_process:304:5) {
-  code: 9,
-  killed: false,
-  signal: null,
-  cmd: '/root/.browserstack/BrowserStackLocal --daemon start --log-file /wdio/local.log --source nodejs-1.5.4 --key QHqzxidWEyF5KRkPSepT'
-}
+-> Establishing browserstack local tunnel connection..
+Downloading in sync
+Error while trying to execute binary SyntaxError: Unexpected token / in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at Local.startSync (/wdio/node_modules/browserstack-local/lib/Local.js:51:21)
+    at Object.start (file:///wdio/browserstack.service.ts:27:32)
+    at Object.onPrepare (file:///wdio/wdio.conf.ts:48:28)
+    at file:///wdio/node_modules/@wdio/cli/build/utils.js:81:20
+    at Array.map (<anonymous>)
+    at runLauncherHook (file:///wdio/node_modules/@wdio/cli/build/utils.js:79:29)
+    at Launcher.run (file:///wdio/node_modules/@wdio/cli/build/launcher.js:93:19)
 Retrying Binary Download. Retries Left 5
-.exit
-Error while trying to execute binary Error: Command failed: /root/.browserstack/BrowserStackLocal --daemon start --log-file /wdio/local.log --source nodejs-1.5.4 --key QHqzxidWEyF5KRkPSepT
-/root/.browserstack/BrowserStackLocal: --loader requires --experimental-modules be enabled
-
+Downloading in sync
+^C
 /wdio # 
+/wdio # 2023-08-17T19:22:02.536Z ERROR @wdio/cli:utils: Error in hook: Error: -> Browserstack Local is not started. Try Again..
+    at Object.start (file:///wdio/browserstack.service.ts:31:15)
+    at Object.onPrepare (file:///wdio/wdio.conf.ts:48:28)
+    at file:///wdio/node_modules/@wdio/cli/build/utils.js:81:20
+    at Array.map (<anonymous>)
+    at runLauncherHook (file:///wdio/node_modules/@wdio/cli/build/utils.js:79:29)
+    at Launcher.run (file:///wdio/node_modules/@wdio/cli/build/launcher.js:93:19)
+
 ```
