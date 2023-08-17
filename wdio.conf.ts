@@ -1,4 +1,11 @@
 import type { Options } from '@wdio/types'
+
+const bstackOptions = {
+    'bstack:options': {
+        buildName: 'wdio-bstack'
+    }
+}
+
 export const config: Options.Testrunner = {
     runner: 'local',
     autoCompileOpts: {
@@ -16,17 +23,17 @@ export const config: Options.Testrunner = {
     exclude: [
         // 'path/to/excluded/files'
     ],
-    maxInstances: 10,
+    maxInstances: 5,
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome', ...bstackOptions
     }, {
-        browserName: 'firefox'
+        browserName: 'firefox', ...bstackOptions
     }, {
-        browserName: 'safari'
+        browserName: 'safari', ...bstackOptions
     }, {
-        browserName: 'MicrosoftEdge'
+        browserName: 'MicrosoftEdge', ...bstackOptions
     }],
-    logLevel: 'info',
+    logLevel: 'error',
     bail: 0,
     baseUrl: 'http://localhost',
     waitforTimeout: 10000,
