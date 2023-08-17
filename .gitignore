@@ -1,0 +1,6 @@
+allure-results
+node_modules
+*log
+.dist
+allure-report
+.idea
