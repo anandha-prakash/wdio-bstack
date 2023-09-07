@@ -13,7 +13,7 @@ export const config: Options.Testrunner = {
             transpileOnly: true
         }
     },
-    
+
     //
     // =================
     // Service Providers
@@ -29,7 +29,7 @@ export const config: Options.Testrunner = {
     // in via the `region` property. Available short handles for regions are `us` (default), `eu` and `apac`.
     // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
     // If you don't provide the region it will default for the `us`
-    
+
     //
     // ==================
     // Specify Test Files
@@ -77,13 +77,15 @@ export const config: Options.Testrunner = {
     //
     capabilities: [{
         browserName: 'chrome'
-    }, {
-        browserName: 'firefox'
-    }, {
-        browserName: 'safari'
-    }, {
-        browserName: 'MicrosoftEdge'
-    }],
+    },
+    //     {
+    //     browserName: 'firefox'
+    // }, {
+    //     browserName: 'safari'
+    // }, {
+    //     browserName: 'MicrosoftEdge'
+    // }
+    ],
 
     //
     // ===================
@@ -154,9 +156,21 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [
+        'spec',
+        [
+            'allure',
+            {
+                outputDir: 'allure-results',
+                disableWebdriverStepsReporting: true,
+                disableMochaHooks: true,
+                disableWebdriverScreenshotsReporting: false,
+                addConsoleLogs: false,
+            },
+        ],
+    ],
 
-    
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
